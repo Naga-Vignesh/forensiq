@@ -1,164 +1,150 @@
-#🛰️ Forensiq
-AI-Powered Digital Image Forensics Platform
+# 🛰️ Forensiq
 
-Forensiq is a production-grade AI-driven digital image forensic platform designed to analyze image authenticity, detect tampering, extract metadata intelligence, and generate structured forensic reports.
+**AI-Powered Digital Image Forensics Platform**
 
-Built with FastAPI, deployed on AWS EC2, secured with Nginx + SSL, and powered by AI + forensic image processing techniques, Forensiq provides a modern, scalable forensic analysis workflow.
+Forensiq is a production-grade digital image forensic platform that analyzes image authenticity, detects manipulation, extracts metadata intelligence, and generates structured forensic reports.
 
-#🚀 Live Deployment
+Built with **FastAPI**, deployed on **AWS EC2**, secured with **Nginx + SSL**, and powered by **AI + forensic image processing techniques**, Forensiq offers a scalable and modern forensic workflow.
 
-##🌐 Production URL:
-https://forensiq.tech
+---
 
-Deployed on:
+## 🚀 Live Deployment
 
-AWS EC2 (Ubuntu)
+### 🌐 Production URL
 
-Gunicorn (ASGI worker)
+- https://forensiq.tech
 
-Nginx Reverse Proxy
+### Deployment Stack
 
-Let’s Encrypt SSL
+- AWS EC2 (Ubuntu)
+- Gunicorn (ASGI worker)
+- Nginx reverse proxy
+- Let’s Encrypt SSL
+- Custom domain configuration
 
-Custom Domain Configuration
+---
 
-#🧠 Core Features
-##🔍 1. Authenticity Classification
+## 🧠 Core Features
 
-AI-powered image authenticity prediction
+### 1) 🔍 Authenticity Classification
 
-Human vs AI-generated detection
+- AI-powered image authenticity prediction
+- Human vs AI-generated detection
+- Confidence scoring
+- Visual risk categorization
 
-Confidence scoring
+### 2) 🧪 Tampering Detection (ELA)
 
-Visual risk categorization
+Error Level Analysis (ELA) detects manipulation by:
 
-##🧪 2. Tampering Detection (ELA)
+- Recompressing image at controlled JPEG quality
+- Calculating pixel-level compression differences
+- Dynamically scaling difference values
+- Highlighting suspicious compression artifacts
 
-Error Level Analysis (ELA) detects image manipulation by:
+Additional capabilities:
 
-Recompressing image at controlled JPEG quality
+- Dynamic ELA amplification
+- Tampering visibility enhancement
+- Optional heatmap forensic mode
 
-Calculating pixel-level compression differences
+### 3) 🔐 Cryptographic Integrity
 
-Dynamically scaling difference values
+- MD5 hash generation
+- SHA256 hash generation
+- Chain-of-custody verification support
 
-Highlighting suspicious compression artifacts
+### 4) 🦠 VirusTotal Threat Intelligence
 
-✔ Dynamic ELA amplification
-✔ Tampering visibility enhancement
-✔ Optional heatmap forensic mode
+- File hash scanning via VirusTotal API
+- Malicious / Suspicious / Undetected breakdown
+- Real-time threat classification panel
 
-##🔐 3. Cryptographic Integrity
+### 5) 📍 Metadata Intelligence
 
-MD5 hash generation
+- EXIF extraction
+- Camera/device information
+- Timestamp analysis
+- Embedded GPS coordinate parsing
 
-SHA256 hash generation
+If GPS metadata exists, Forensiq can generate direct Google Maps links.
 
-Chain-of-custody verification support
+### 6) 🤖 AI Forensic Report
 
-##🦠 4. VirusTotal Threat Intelligence
+- Natural-language AI-generated forensic summary
+- Structured risk interpretation
+- Professional investigative tone
 
-File hash scanning via VirusTotal API
+Powered by Google Gemini API with rate-limited fail-safe handling.
 
-Malicious / Suspicious / Undetected breakdown
+---
 
-Real-time threat classification panel
+## 🏗️ Architecture Overview
 
-##📍 5. Metadata Intelligence
+### Backend
 
-EXIF extraction
+- FastAPI
+- Uvicorn
+- Gunicorn (UvicornWorker)
+- Python 3.11
 
-Camera data
+### Frontend
 
-Device information
+- Jinja2 templates
+- Bootstrap 5
+- Custom dark forensic UI theme
 
-Timestamp analysis
+### Infrastructure
 
-Embedded GPS coordinates
+- AWS EC2 (Ubuntu)
+- Nginx reverse proxy
+- Let’s Encrypt SSL
+- systemd service management
 
-If GPS metadata exists:
+### Security Controls
 
-Direct Google Maps link generation
+- HTTPS enforced
+- Reverse proxy isolation
+- API quota protection
+- Worker timeout configuration
+- IP-based rate limiting
+- Gunicorn max-request cycling
 
-##🤖 6. AI Forensic Report
+---
 
-Natural-language AI-generated forensic summary
+## 📦 Installation (Local Development)
 
-Structured risk interpretation
-
-Professional investigative tone
-
-Powered by:
-
-Google Gemini API (rate-limited with fail-safe handling)
-
-#🏗️ Architecture Overview
-Backend
-
-FastAPI
-
-Uvicorn
-
-Gunicorn (UvicornWorker)
-
-Python 3.11
-
-Frontend
-
-Jinja2 Templates
-
-Bootstrap 5
-
-Custom dark forensic UI theme
-
-Infrastructure
-
-AWS EC2 (Ubuntu)
-
-Nginx reverse proxy
-
-Let’s Encrypt SSL
-
-systemd service management
-
-Security Controls
-
-HTTPS enforced
-
-Reverse proxy isolation
-
-API quota protection
-
-Worker timeout configuration
-
-Rate limiting (IP-based)
-
-Gunicorn max-request cycling
-
-#📦 Installation (Local Development)
+```bash
 git clone https://github.com/Naga-Vignesh/forensiq.git
 cd forensiq
 
 python3 -m venv venv
 source venv/bin/activate
-
 pip install -r requirements.txt
+```
 
 Run locally:
 
+```bash
 uvicorn main:app --reload
-#⚙️ Production Deployment
+```
 
-Gunicorn:
+---
 
+## ⚙️ Production Deployment
+
+### Gunicorn
+
+```bash
 gunicorn -k uvicorn.workers.UvicornWorker main:app \
---bind 127.0.0.1:8000 \
---workers 2 \
---timeout 120
+  --bind 127.0.0.1:8000 \
+  --workers 2 \
+  --timeout 120
+```
 
-Nginx Reverse Proxy:
+### Nginx Reverse Proxy (example)
 
+```nginx
 server {
     listen 80;
     server_name forensiq.tech www.forensiq.tech;
@@ -170,14 +156,21 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 }
+```
 
-SSL Setup:
+### SSL Setup
 
+```bash
 sudo certbot --nginx -d forensiq.tech -d www.forensiq.tech
-📊 ELA Algorithm (Dynamic Scaling Implementation)
+```
 
-Instead of fixed amplification, Forensiq uses adaptive scaling:
+---
 
+## 📊 ELA Algorithm (Dynamic Scaling)
+
+Forensiq uses adaptive scaling instead of fixed amplification:
+
+```python
 ela_image = cv2.absdiff(original, compressed)
 ela_float = ela_image.astype(np.float32)
 
@@ -187,207 +180,156 @@ if max_diff == 0:
 
 scale = 255.0 / max_diff
 ela_image = np.clip(ela_float * scale, 0, 255).astype(np.uint8)
+```
 
-This ensures:
+Benefits:
 
-Subtle manipulations remain visible
+- Subtle manipulations remain visible
+- Brightest anomalies are fully scaled
+- More accurate forensic visualization
 
-Brightest anomaly is fully scaled
+---
 
-Accurate forensic representation
+## 🔐 API Key Configuration
 
-#🔐 API Key Configuration
+Required environment variables:
 
-Environment variables required:
-
+```bash
 GOOGLE_API_KEY=your_gemini_key
 VT_API_KEY=your_virustotal_key
+```
 
 Set securely:
 
+```bash
 export GOOGLE_API_KEY=...
 export VT_API_KEY=...
-#🛡️ Production Safeguards
+```
 
-✔ Gemini 429 quota lock handling
-✔ Graceful failure messaging
-✔ Gunicorn worker timeout protection
-✔ Rate limiting to prevent API abuse
-✔ File size restrictions (Nginx 413 protection)
+---
 
-#🧠 Challenges Faced & Lessons Learned
+## 🛡️ Production Safeguards
 
-Building and deploying Forensiq was not just about writing code — it involved solving real-world infrastructure, AI integration, and production deployment challenges.
+- Gemini 429 quota lock handling
+- Graceful failure messaging
+- Gunicorn worker timeout protection
+- Rate limiting to reduce abuse
+- File size restrictions (e.g., Nginx 413 protection)
 
-###1️⃣ AI API Quota Exhaustion (Gemini 429 Errors)
-Problem
+---
 
-While deploying to production, the Gemini API began returning:
+## 🧠 Challenges & Lessons Learned
 
-429 RESOURCE_EXHAUSTED
-Quota exceeded for metric: generate_content_free_tier_requests
+### 1) AI API Quota Exhaustion (Gemini 429)
 
-The free-tier limit (20 requests/day per model) was quickly exceeded during testing.
+**Problem**
 
-Impact
+Free-tier Gemini quota was exceeded during testing (`RESOURCE_EXHAUSTED`).
 
-Worker timeouts in Gunicorn
+**Impact**
 
-Repeated API failures
+- Worker timeouts
+- Repeated API failures
+- Log flooding
 
-Log flooding
+**Solution**
 
-Unstable production behavior
+- Graceful exception handling for quota errors
+- Quota lock to prevent repeated failing calls
+- Request rate limiting
+- Fail-fast fallback messaging
 
-Solution
+**Lesson**
 
-Implemented graceful exception handling for ResourceExhausted
+External AI services require quota awareness, fail-safes, and defensive rate controls.
 
-Added quota lock mechanism to prevent repeated API calls after exhaustion
+### 2) Gunicorn Worker Timeouts
 
-Added request rate limiting to prevent abuse
+**Problem**
 
-Configured Gunicorn timeout properly
+Long-running AI calls caused worker aborts and timeout errors.
 
-Designed fail-fast fallback messaging for users
+**Solution**
 
-Lesson Learned
+- Increased timeout (`--timeout 120`)
+- Improved API error handling
+- Added controlled retry logic
+- Enabled worker recycling (`--max-requests`)
 
-AI APIs must always be integrated with:
+**Lesson**
 
-Quota awareness
+Production services need defensive timeout and worker lifecycle tuning.
 
-Fail-safe handling
+### 3) Nginx 413 Request Entity Too Large
 
-Rate limiting
+**Problem**
 
-Cost-control strategy
+Large uploads triggered `413 Request Entity Too Large`.
 
-Never assume external AI services are infinite.
+**Solution**
 
-###2️⃣ Gunicorn Worker Timeouts
-Problem
+Set Nginx upload limit:
 
-Long-running AI calls caused:
-
-CRITICAL WORKER TIMEOUT
-Worker was sent SIGABRT
-Root Cause
-
-Blocking API calls
-
-Default Gunicorn timeout too low
-
-No proper background handling
-
-Solution
-
-Increased Gunicorn timeout (--timeout 120)
-
-Optimized API error handling
-
-Added controlled retry logic
-
-Configured worker recycling (--max-requests)
-
-Lesson Learned
-
-Production deployments require:
-
-Proper worker configuration
-
-Non-blocking request strategies
-
-Defensive timeout settings
-
-###3️⃣ Nginx 413 Request Entity Too Large
-Problem
-
-Uploading large images resulted in:
-
-413 Request Entity Too Large
-Solution
-
-Added:
-
+```nginx
 client_max_body_size 20M;
+```
 
-Restarted Nginx.
+**Lesson**
 
-Lesson Learned
+Proxy-layer upload limits must be configured explicitly.
 
-Reverse proxies enforce upload limits.
-Backend configuration alone is not enough.
+### 4) ELA Visibility Issues
 
-###4️⃣ ELA Image Visibility Issues
-Problem
+**Problem**
 
-Initial Error Level Analysis images appeared nearly black and unreadable.
+Early ELA outputs were too dark to interpret.
 
-Root Cause
+**Solution**
 
-Fixed amplification multiplier (×10) was insufficient.
+Implemented adaptive scaling based on maximum observed difference.
 
-Solution
+**Lesson**
 
-Implemented dynamic pixel scaling:
+Forensic visualization quality depends on dynamic scaling, not fixed multipliers.
 
-max_diff = ela_float.max()
-scale = 255.0 / max_diff
+---
 
-This ensured:
+## 📈 Future Roadmap
 
-Brightest anomaly scales to white
+- Redis caching for AI responses
+- S3 storage integration
+- Load balancer scaling
+- User authentication
+- Usage analytics dashboard
+- Stripe billing tiers
+- AI tampering region bounding boxes
+- Enhanced heatmap visualization
 
-Subtle compression differences remain visible
+---
 
-Lesson Learned
+## 🧑‍💻 Author
 
-Forensic visualization requires adaptive scaling, not fixed amplification.
-
-📈 Future Roadmap
-
-Redis caching for AI responses
-
-S3 storage integration
-
-Load balancer scaling
-
-User authentication system
-
-Usage analytics dashboard
-
-Stripe billing tier
-
-AI tampering region bounding boxes
-
-Heatmap forensic visualization
-
-#🧑‍💻 Author
-
-Naga Vignesh
+**Naga Vignesh**  
 Cybersecurity & AI Systems Engineer
 
-GitHub: https://github.com/Naga-Vignesh
+- GitHub: https://github.com/Naga-Vignesh
 
-#📜 License
+---
+
+## 📜 License
 
 MIT License
 
-#🧾 Technical Summary
+---
+
+## 🧾 Technical Summary
 
 Forensiq demonstrates:
 
-Full-stack deployment capability
-
-AI integration with rate-limit handling
-
-Secure reverse-proxy architecture
-
-Forensic image processing
-
-Cloud production infrastructure
-
-Defensive API consumption strategies
-
-Secure domain and SSL configuration
+- Full-stack deployment capability
+- AI integration with quota/rate-limit handling
+- Secure reverse-proxy architecture
+- Forensic image processing pipeline
+- Cloud production infrastructure
+- Defensive external API consumption
+- Secure domain and SSL configuration
