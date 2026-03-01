@@ -87,8 +87,17 @@ def generate_ela_image(original_path):
     # Compute difference
     ela_image = cv2.absdiff(original, compressed)
 
-    # Amplify differences
-    ela_image = np.clip(ela_image * 10, 0, 255)
+    # Convert to float for dynamic scaling
+    ela_float = ela_image.astype(np.float32)
+
+    max_diff = ela_float.max()
+
+    if max_diff == 0:
+        max_diff = 1
+
+    # Dynamically scale based on actual max difference
+    scale = 255.0 / max_diff
+    ela_image = np.clip(ela_float * scale, 0, 255).astype(np.uint8)
 
     ela_path = original_path + "_ela.jpg"
     cv2.imwrite(ela_path, ela_image)
