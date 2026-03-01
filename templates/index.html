@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bhama | AI Forensic Intelligence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {
+        background: radial-gradient(circle at top left, #0f172a, #020617);
+        color: #f1f5f9;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Force strong readable text */
+    .card, .card p, .card strong, .card span {
+        color: #f8fafc !important;
+    }
+
+    /* Headings Neon */
+    h1, h4, h5 {
+        color: #38bdf8 !important;
+        text-shadow: 0 0 15px rgba(56,189,248,0.9);
+    }
+
+    /* Glass Cards */
+    .card {
+        background: rgba(15, 23, 42, 0.95) !important;
+        border: 1px solid rgba(56,189,248,0.4);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        box-shadow: 0 0 25px rgba(56,189,248,0.2);
+        transition: 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 0 40px rgba(56,189,248,0.4);
+    }
+
+    /* Buttons */
+    .btn-primary {
+        background: linear-gradient(90deg, #0ea5e9, #2563eb);
+        border: none;
+        box-shadow: 0 0 20px rgba(56,189,248,0.7);
+        font-weight: bold;
+    }
+
+    .btn-success {
+        box-shadow: 0 0 20px rgba(34,197,94,0.7);
+        font-weight: bold;
+    }
+
+    /* Progress */
+    .progress {
+        background-color: #1e293b;
+        border-radius: 12px;
+    }
+
+    .progress-bar {
+        font-weight: bold;
+        box-shadow: 0 0 25px rgba(56,189,248,0.9);
+    }
+
+    /* AI Report Panel */
+    .ai-report-card {
+        background: #0f172a !important;
+        border: 1px solid #38bdf8;
+        box-shadow: 0 0 35px rgba(56,189,248,0.3);
+    }
+
+    .ai-report-content {
+        background: #020617;
+        padding: 25px;
+        border-radius: 12px;
+        line-height: 1.8;
+        font-size: 15px;
+        color: #e2e8f0 !important;
+        max-height: 500px;
+        overflow-y: auto;
+    }
+
+    /* Risk Highlight */
+    .text-success { color: #22c55e !important; font-weight: bold; }
+    .text-warning { color: #facc15 !important; font-weight: bold; }
+    .text-danger { color: #ef4444 !important; font-weight: bold; }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Bhama</h1>
+        <p class="lead text-secondary">AI-Powered Digital Image Forensics Platform</p>
+    </div>
+
+    <div class="card bg-secondary p-4 shadow-lg">
+        <form action="/analyze" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Upload Image</label>
+                <input class="form-control" type="file" name="file" required>
+            </div>
+            <button class="btn btn-primary w-100">Analyze Image</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
