@@ -1,13 +1,13 @@
-🛰️ Forensiq
+#🛰️ Forensiq
 AI-Powered Digital Image Forensics Platform
 
 Forensiq is a production-grade AI-driven digital image forensic platform designed to analyze image authenticity, detect tampering, extract metadata intelligence, and generate structured forensic reports.
 
 Built with FastAPI, deployed on AWS EC2, secured with Nginx + SSL, and powered by AI + forensic image processing techniques, Forensiq provides a modern, scalable forensic analysis workflow.
 
-🚀 Live Deployment
+#🚀 Live Deployment
 
-🌐 Production URL:
+##🌐 Production URL:
 https://forensiq.tech
 
 Deployed on:
@@ -22,8 +22,8 @@ Let’s Encrypt SSL
 
 Custom Domain Configuration
 
-🧠 Core Features
-🔍 1. Authenticity Classification
+#🧠 Core Features
+##🔍 1. Authenticity Classification
 
 AI-powered image authenticity prediction
 
@@ -33,7 +33,7 @@ Confidence scoring
 
 Visual risk categorization
 
-🧪 2. Tampering Detection (ELA)
+##🧪 2. Tampering Detection (ELA)
 
 Error Level Analysis (ELA) detects image manipulation by:
 
@@ -49,7 +49,7 @@ Highlighting suspicious compression artifacts
 ✔ Tampering visibility enhancement
 ✔ Optional heatmap forensic mode
 
-🔐 3. Cryptographic Integrity
+##🔐 3. Cryptographic Integrity
 
 MD5 hash generation
 
@@ -57,7 +57,7 @@ SHA256 hash generation
 
 Chain-of-custody verification support
 
-🦠 4. VirusTotal Threat Intelligence
+##🦠 4. VirusTotal Threat Intelligence
 
 File hash scanning via VirusTotal API
 
@@ -65,7 +65,7 @@ Malicious / Suspicious / Undetected breakdown
 
 Real-time threat classification panel
 
-📍 5. Metadata Intelligence
+##📍 5. Metadata Intelligence
 
 EXIF extraction
 
@@ -81,7 +81,7 @@ If GPS metadata exists:
 
 Direct Google Maps link generation
 
-🤖 6. AI Forensic Report
+##🤖 6. AI Forensic Report
 
 Natural-language AI-generated forensic summary
 
@@ -93,7 +93,7 @@ Powered by:
 
 Google Gemini API (rate-limited with fail-safe handling)
 
-🏗️ Architecture Overview
+#🏗️ Architecture Overview
 Backend
 
 FastAPI
@@ -136,7 +136,7 @@ Rate limiting (IP-based)
 
 Gunicorn max-request cycling
 
-📦 Installation (Local Development)
+#📦 Installation (Local Development)
 git clone https://github.com/Naga-Vignesh/forensiq.git
 cd forensiq
 
@@ -148,7 +148,7 @@ pip install -r requirements.txt
 Run locally:
 
 uvicorn main:app --reload
-⚙️ Production Deployment
+#⚙️ Production Deployment
 
 Gunicorn:
 
@@ -196,7 +196,7 @@ Brightest anomaly is fully scaled
 
 Accurate forensic representation
 
-🔐 API Key Configuration
+#🔐 API Key Configuration
 
 Environment variables required:
 
@@ -207,7 +207,7 @@ Set securely:
 
 export GOOGLE_API_KEY=...
 export VT_API_KEY=...
-🛡️ Production Safeguards
+#🛡️ Production Safeguards
 
 ✔ Gemini 429 quota lock handling
 ✔ Graceful failure messaging
@@ -215,11 +215,11 @@ export VT_API_KEY=...
 ✔ Rate limiting to prevent API abuse
 ✔ File size restrictions (Nginx 413 protection)
 
-🧠 Challenges Faced & Lessons Learned
+#🧠 Challenges Faced & Lessons Learned
 
 Building and deploying Forensiq was not just about writing code — it involved solving real-world infrastructure, AI integration, and production deployment challenges.
 
-1️⃣ AI API Quota Exhaustion (Gemini 429 Errors)
+###1️⃣ AI API Quota Exhaustion (Gemini 429 Errors)
 Problem
 
 While deploying to production, the Gemini API began returning:
@@ -265,7 +265,7 @@ Cost-control strategy
 
 Never assume external AI services are infinite.
 
-2️⃣ Gunicorn Worker Timeouts
+###2️⃣ Gunicorn Worker Timeouts
 Problem
 
 Long-running AI calls caused:
@@ -300,7 +300,7 @@ Non-blocking request strategies
 
 Defensive timeout settings
 
-3️⃣ Nginx 413 Request Entity Too Large
+###3️⃣ Nginx 413 Request Entity Too Large
 Problem
 
 Uploading large images resulted in:
@@ -319,7 +319,7 @@ Lesson Learned
 Reverse proxies enforce upload limits.
 Backend configuration alone is not enough.
 
-4️⃣ ELA Image Visibility Issues
+###4️⃣ ELA Image Visibility Issues
 Problem
 
 Initial Error Level Analysis images appeared nearly black and unreadable.
@@ -363,18 +363,18 @@ AI tampering region bounding boxes
 
 Heatmap forensic visualization
 
-🧑‍💻 Author
+#🧑‍💻 Author
 
 Naga Vignesh
 Cybersecurity & AI Systems Engineer
 
 GitHub: https://github.com/Naga-Vignesh
 
-📜 License
+#📜 License
 
 MIT License
 
-🧾 Technical Summary
+#🧾 Technical Summary
 
 Forensiq demonstrates:
 
